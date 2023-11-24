@@ -1,0 +1,13 @@
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --requirement requirements.txt
+
+COPY ml-model.py .
+COPY model.joblib .
+
+ENTRYPOINT ["python", "/app/ml-model.py"]
